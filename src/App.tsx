@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CustomButton from "./Button";
+import CustomButton from "./components/Button";
 import DataFetcher from "./DataFetcher";
 import {Box, Typography} from "@mui/material";
 
