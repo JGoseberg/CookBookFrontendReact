@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CustomButton from "./Button";
+import DataFetcher from "./DataFetcher";
+import {Box, Typography} from "@mui/material";
 
-function App() {
+const App: React.FC = () => {
+  const handleClick = () =>{
+    alert("Button Clicked!");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <Typography variant="h4" gutterBottom>
+          Welcome to my App
+        </Typography>
+        <CustomButton label="Click Me" onClick={handleClick}></CustomButton>
+      </Box>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+          <DataFetcher />
+      </Box>
+      </div>
+  )
 }
+
+
 
 export default App;
