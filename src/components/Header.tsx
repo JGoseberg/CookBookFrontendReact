@@ -1,13 +1,10 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import StiticImage from "./StiticImage";
-
-const userLogo = StiticImage();
 
 const Header: React.FC = () => {
     return (
-        <AppBar position="static" sx={{ paddingX: 2 }}>
+        <AppBar position="sticky" sx={{ paddingX: 2 }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Left Section: Logo and Text */}
                 <Box display="flex" alignItems="center" gap={2}>

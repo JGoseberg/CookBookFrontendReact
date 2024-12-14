@@ -1,6 +1,6 @@
 // src/pages/DashboardPage.tsx
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import {Box, Link, Typography} from '@mui/material';
 
 const DashboardPage: React.FC = () => {
     return (
@@ -11,6 +11,9 @@ const DashboardPage: React.FC = () => {
             <Typography variant="body1">
                 You are logged in.
             </Typography>
+            <Link href="/recipes" variant="body2">
+                Go to recipes
+            </Link>
         </Box>
     );
 };
