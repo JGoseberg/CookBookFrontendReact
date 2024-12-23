@@ -1,11 +1,11 @@
 // src/pages/RecipePage.tsx
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Avatar,
     Box,
     Button,
     Card, CardActions, CardContent, CardHeader,
-    CardMedia,
+    CardMedia, CircularProgress,
     Grid2,
     IconButton,
     IconButtonProps,
@@ -19,84 +19,31 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RecipeCard from '../components/RecipeCard';
+import {fetchRecipes, IRecipes} from "../api/recipesApi";
 
-interface RecipePageProps {
-    id: number;
-    title: string;
-    image: string;
-    details: string;
-    rating: number;
-    duration: string;
-}
+const RecipePage: React.FC = () => {
+    const [recipes, setRecipes] = useState<IRecipes[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-const sampleData: RecipePageProps[] = [
-    {
-        id: 1,
-        title: 'Sample 1',
-        image: 'https://via.placeholder.com/150',
-        details: 'Description sadfasdfasdfdsa asdfsadfasdfdsfa',
-        rating: 5,
-        duration: '10 minutes',
-    },
-    {
-        id: 2,
-        title: 'Sample 2',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 4,
-        duration: '20 minutes',
-    },
-    {
-        id: 3,
-        title: 'Sample 3',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 3,
-        duration: '10 minutes',
-    },
-    {
-        id: 4,
-        title: 'Sample 4',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 2,
-        duration: '10 minutes',
-    },
-    {
-        id: 5,
-        title: 'Sample 1',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 5,
-        duration: '10 minutes',
-    },
-    {
-        id: 6,
-        title: 'Sample 2',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 4,
-        duration: '20 minutes',
-    },
-    {
-        id: 7,
-        title: 'Sample 3',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 3,
-        duration: '10 minutes',
-    },
-    {
-        id: 8,
-        title: 'Sample 4',
-        image: 'https://via.placeholder.com/150',
-        details: 'Lorem ipsum',
-        rating: 2,
-        duration: '10 minutes',
-    }
-];
+    useEffect(() => {
+        const getRecipes = async () => {
+            try {
+                const data = await fetchRecipes();
+                setRecipes(data);
+            } catch (error) {
+                setError("Failed to Load")
+            } finally {
+                setLoading(false)
+            }
+        };
 
-export default function RecipeReviewCard(){
+        getRecipes();
+    }, []);
+
+    if (loading) return <CircularProgress />;
+
+    if (error) return <Typography color="error">{error}</Typography>;
 
     return (
         <Box
@@ -112,13 +59,13 @@ export default function RecipeReviewCard(){
             }}
             >
             <Grid2 container spacing={2} justifyContent={"center"} columnSpacing={{xs: 3, sm: 3, md: 3, lg: 6, xl: 3}} >
-                {sampleData.map((item, index) => (
+                {recipes.map((item) => (
                     <Grid2>
                         <RecipeCard
                             id={item.id}
-                            title={item.title}
+                            title={item.name}
                             image={item.image}
-                            details={item.details}
+                            details={item.description}
                             rating={item.rating}
                             duration={item.duration}
                             />
@@ -129,5 +76,5 @@ export default function RecipeReviewCard(){
     )
 };
 
-
+export default RecipePage;
 

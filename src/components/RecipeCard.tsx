@@ -14,22 +14,31 @@ import {red} from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {CompareArrows} from "@mui/icons-material";
+import {useNavigate} from "react-router-dom";
 
 
 interface CardProps {
     id: number;
     title: string;
-    image: string;
+    image?: string;
     details: string;
     rating: number;
     duration: string;
 }
 
 const RecipeCard: React.FC<CardProps> = ({id, title, image, details, rating, duration}) => {
+    const navigate = useNavigate();
+
+    const handleCardClick = () => {
+        navigate(`/recipe/${id}`)
+    }
     return (
         <Card sx={{
             width: 225
-        }}>
+        }}
+              onClick={ handleCardClick }
+        >
+
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="avatar">
