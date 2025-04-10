@@ -62,6 +62,7 @@ const RecipePage: React.FC = () => {
                 {recipes.map((item) => (
                     <Grid2>
                         <RecipeCard
+                            key = {item.id}
                             id={item.id}
                             title={item.name}
                             image={item.image}

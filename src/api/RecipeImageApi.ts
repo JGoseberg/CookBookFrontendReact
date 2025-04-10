@@ -1,8 +1,8 @@
 // src/api/recipeImageApi.ts
 
 export interface IRecipeImage {
-    imageData: string;  // Base64 string of the image
-    mimeType: string;   // Content type of the image (e.g., image/jpeg, image/png)
+    fileContents: string;  // Base64 string of the image
+    contentType: string;   // Content type of the image (e.g., image/jpeg, image/png)
 }
 
 export const fetchRecipeImageById = async (id: string | undefined): Promise<IRecipeImage> => {
@@ -11,9 +11,11 @@ export const fetchRecipeImageById = async (id: string | undefined): Promise<IRec
     if (!response.ok) {
         throw new Error('Failed to fetch image');
     }
+
     const data = await response.json();
+    console.log(data);
     return {
-        imageData: data.imageData, // Base64 string of the image
-        mimeType: data.mimeType,   // Content type of the image (e.g., image/jpeg)
+        fileContents: data.fileContents, // Base64 string of the image
+        contentType: data.contentType,   // Content type of the image (e.g., image/jpeg)
     };
 };

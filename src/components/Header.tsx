@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
+import {AppBar, Toolbar, Typography, IconButton, Box, Link} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Header: React.FC = () => {
@@ -8,11 +8,24 @@ const Header: React.FC = () => {
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Left Section: Logo and Text */}
                 <Box display="flex" alignItems="center" gap={2}>
-                    <img src="/logo.png" /*alt="Logo"*/ style={{ height: '40px' }} />
-                    <Typography variant="h6" component="div">
-                        myApp
-                    </Typography>
+                    <Link href="/">
+                        <img src="/logo.png" /*alt="Logo"*/ style={{height: '40px'}}/>
+                        <Typography variant="h6" component="div">
+                            myApp
+                        </Typography>
+                    </Link>
+                    <Link href="/" variant="inherit" underline="hover" title={"myApp" +
+                        "" +
+                        "" +
+                        "" +
+                        ""}>
+                        <Typography variant="h6" component="div">
+                            myApp
+                        </Typography>
+                    </Link>
                 </Box>
+
+
 
                 {/* Right Section: User Icon */}
                 <IconButton edge="end" color="inherit">

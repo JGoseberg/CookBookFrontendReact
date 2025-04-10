@@ -30,8 +30,8 @@ const RecipeDetailPage: React.FC = () => {
                 // Combine recipe data with image data
                 setRecipeDetail({
                     ...recipeData,
-                    image: imageData.imageData,  // Base64 string of the image
-                    mimeType: imageData.mimeType,  // Content type (e.g., image/jpeg)
+                    image: imageData.fileContents,  // Base64 string of the image
+                    mimeType: imageData.contentType,  // Content type (e.g., image/jpeg)
                 });
             } catch (err) {
                 setError('Failed to fetch recipe or image');

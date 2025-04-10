@@ -12,6 +12,7 @@ export interface IRecipes {
 export interface IRecipe {
     id: number;
     name: string;
+    image: string;
     description: string;
     instruction: string;
 }
@@ -20,7 +21,6 @@ export interface IRecipe {
 
 export const fetchRecipes = async () => {
     const response = await axios.get<IRecipes[]>("https://localhost:7010/api/Recipes/GetAllRecipes");
-    console.log(response);
     return response.data;
 };
 
